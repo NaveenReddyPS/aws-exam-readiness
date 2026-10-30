@@ -1,179 +1,29 @@
 
 import './style.css'
 
-const API_URL = 'http://127.0.0.1:3001/api/submit'
+const API_URL = 'https://ug6p5yxoqqfxspswdaoo6h2yv40kewcc.lambda-url.eu-north-1.on.aws/'
 
 const questions = [
-  {
-    id: 'q1', topic: 'Cloud Concepts',
-    question: 'Which AWS service provides resizable virtual servers?',
-    options: ['Amazon S3', 'Amazon EC2', 'Amazon Route 53', 'AWS IAM'],
-    answer: 1,
-    explanation: 'Amazon EC2 provides resizable virtual computing capacity.'
-  },
-  {
-    id: 'q2', topic: 'Storage',
-    question: 'Which AWS service is designed for object storage?',
-    options: ['Amazon RDS', 'AWS Lambda', 'Amazon S3', 'Amazon VPC'],
-    answer: 2,
-    explanation: 'Amazon S3 is an object storage service.'
-  },
-  {
-    id: 'q3', topic: 'Security',
-    question: 'Which service manages AWS users and permissions?',
-    options: ['Amazon CloudFront', 'AWS IAM', 'Amazon Route 53', 'Amazon SQS'],
-    answer: 1,
-    explanation: 'AWS IAM manages identities and access permissions.'
-  },
-  {
-    id: 'q4', topic: 'Monitoring',
-    question: 'Which service collects AWS metrics and creates alarms?',
-    options: ['Amazon CloudWatch', 'Amazon S3', 'AWS Artifact', 'Amazon EBS'],
-    answer: 0,
-    explanation: 'Amazon CloudWatch monitors metrics, logs and alarms.'
-  },
-  {
-    id: 'q5', topic: 'Cloud Concepts',
-    question: 'What is an AWS Availability Zone?',
-    options: [
-      'A billing account',
-      'An isolated location within an AWS Region',
-      'A DNS record',
-      'A storage bucket'
-    ],
-    answer: 1,
-    explanation: 'Availability Zones are distinct locations within an AWS Region.'
-  },
-  {
-    id: 'q6', topic: 'Cloud Concepts',
-    question: 'Which cloud principle allows resources to increase or decrease with demand?',
-    options: ['Fault tolerance', 'Elasticity', 'Encryption', 'Authentication'],
-    answer: 1,
-    explanation: 'Elasticity allows resources to adjust to changing demand.'
-  },
-  {
-    id: 'q7', topic: 'Cloud Concepts',
-    question: 'Under the shared responsibility model, who is responsible for security in the cloud?',
-    options: [
-      'AWS only',
-      'The customer only for every task',
-      'AWS and the customer, depending on the service',
-      'The internet service provider'
-    ],
-    answer: 2,
-    explanation: 'AWS and customers have different security responsibilities depending on the service.'
-  },
-  {
-    id: 'q8', topic: 'Cloud Concepts',
-    question: 'Which cloud benefit helps avoid large upfront hardware investments?',
-    options: ['Pay-as-you-go pricing', 'Manual scaling', 'Hardware purchases', 'Fixed capacity'],
-    answer: 0,
-    explanation: 'Pay-as-you-go pricing lets customers pay for usage rather than buying all hardware upfront.'
-  },
-  {
-    id: 'q9', topic: 'Storage',
-    question: 'Which AWS service provides persistent block storage volumes for EC2?',
-    options: ['Amazon S3', 'Amazon EBS', 'Amazon Route 53', 'AWS CloudTrail'],
-    answer: 1,
-    explanation: 'Amazon EBS provides block storage volumes for use with EC2.'
-  },
-  {
-    id: 'q10', topic: 'Storage',
-    question: 'Which AWS service provides a managed relational database?',
-    options: ['Amazon DynamoDB', 'Amazon S3', 'Amazon RDS', 'Amazon CloudFront'],
-    answer: 2,
-    explanation: 'Amazon RDS simplifies setting up and operating relational databases.'
-  },
-  {
-    id: 'q11', topic: 'Storage',
-    question: 'Which service provides a shared file system that multiple Linux EC2 instances can access?',
-    options: ['Amazon EFS', 'Amazon EBS', 'Amazon SQS', 'Amazon SNS'],
-    answer: 0,
-    explanation: 'Amazon EFS provides a scalable shared file system.'
-  },
-  {
-    id: 'q12', topic: 'Security',
-    question: 'What is the primary purpose of multi-factor authentication (MFA)?',
-    options: [
-      'Increase storage capacity',
-      'Add another layer of identity verification',
-      'Reduce network latency',
-      'Automatically create backups'
-    ],
-    answer: 1,
-    explanation: 'MFA requires an additional verification factor when signing in.'
-  },
-  {
-    id: 'q13', topic: 'Security',
-    question: 'What does the principle of least privilege mean?',
-    options: [
-      'Give every user administrator access',
-      'Give users only the permissions they need',
-      'Disable all user accounts',
-      'Share one IAM user across an organization'
-    ],
-    answer: 1,
-    explanation: 'Least privilege limits permissions to what is necessary for a task.'
-  },
-  {
-    id: 'q14', topic: 'Security',
-    question: 'Which AWS service helps create and manage encryption keys?',
-    options: ['AWS KMS', 'Amazon Route 53', 'Amazon EC2', 'AWS CloudFormation'],
-    answer: 0,
-    explanation: 'AWS Key Management Service helps create and manage cryptographic keys.'
-  },
-  {
-    id: 'q15', topic: 'Monitoring',
-    question: 'Which AWS service collects metrics and can trigger alarms?',
-    options: ['AWS CloudTrail', 'Amazon CloudWatch', 'Amazon EFS', 'AWS IAM'],
-    answer: 1,
-    explanation: 'Amazon CloudWatch collects monitoring data and supports alarms.'
-  },
-  {
-    id: 'q16', topic: 'Monitoring',
-    question: 'Which AWS service records account activity and API events for auditing?',
-    options: ['AWS CloudTrail', 'Amazon RDS', 'Amazon EBS', 'Amazon S3 Glacier'],
-    answer: 0,
-    explanation: 'AWS CloudTrail records account activity and supported API events.'
-  },
-  {
-    id: 'q17', topic: 'Monitoring',
-    question: 'Which AWS service helps manage operational tasks across AWS resources?',
-    options: ['AWS Systems Manager', 'Amazon Route 53', 'Amazon CloudFront', 'Amazon EFS'],
-    answer: 0,
-    explanation: 'AWS Systems Manager helps manage and operate AWS resources.'
-  },
-  {
-    id: 'q18', topic: 'Networking',
-    question: 'What is an Amazon VPC?',
-    options: [
-      'A logically isolated virtual network in AWS',
-      'A relational database',
-      'An identity provider only',
-      'A file storage service'
-    ],
-    answer: 0,
-    explanation: 'Amazon VPC lets you define a logically isolated virtual network in AWS.'
-  },
-  {
-    id: 'q19', topic: 'Networking',
-    question: 'What do EC2 security groups primarily control?',
-    options: [
-      'Billing invoices',
-      'Inbound and outbound traffic for associated resources',
-      'Database backups',
-      'IAM password policies'
-    ],
-    answer: 1,
-    explanation: 'Security groups act as virtual firewalls for associated resources.'
-  },
-  {
-    id: 'q20', topic: 'Networking',
-    question: 'Which AWS service provides DNS domain name resolution and domain registration?',
-    options: ['Amazon CloudWatch', 'Amazon Route 53', 'Amazon EBS', 'AWS KMS'],
-    answer: 1,
-    explanation: 'Amazon Route 53 is a scalable DNS and domain registration service.'
-  }
+  { id: 'q1', topic: 'Cloud Concepts', question: 'Which AWS service provides resizable virtual servers?', options: ['Amazon S3', 'Amazon EC2', 'Amazon Route 53', 'AWS IAM'] },
+  { id: 'q2', topic: 'Storage', question: 'Which AWS service is designed for object storage?', options: ['Amazon RDS', 'AWS Lambda', 'Amazon S3', 'Amazon VPC'] },
+  { id: 'q3', topic: 'Security', question: 'Which service manages AWS users and permissions?', options: ['Amazon CloudFront', 'AWS IAM', 'Amazon Route 53', 'Amazon SQS'] },
+  { id: 'q4', topic: 'Monitoring', question: 'Which service collects AWS metrics and creates alarms?', options: ['Amazon CloudWatch', 'Amazon S3', 'AWS Artifact', 'Amazon EBS'] },
+  { id: 'q5', topic: 'Cloud Concepts', question: 'What is an AWS Availability Zone?', options: ['A billing account', 'An isolated location within an AWS Region', 'A DNS record', 'A storage bucket'] },
+  { id: 'q6', topic: 'Cloud Concepts', question: 'Which cloud principle allows resources to increase or decrease with demand?', options: ['Fault tolerance', 'Elasticity', 'Encryption', 'Authentication'] },
+  { id: 'q7', topic: 'Cloud Concepts', question: 'Under the shared responsibility model, who is responsible for security in the cloud?', options: ['AWS only', 'The customer only for every task', 'AWS and the customer, depending on the service', 'The internet service provider'] },
+  { id: 'q8', topic: 'Cloud Concepts', question: 'Which cloud benefit helps avoid large upfront hardware investments?', options: ['Pay-as-you-go pricing', 'Manual scaling', 'Hardware purchases', 'Fixed capacity'] },
+  { id: 'q9', topic: 'Storage', question: 'Which AWS service provides persistent block storage volumes for EC2?', options: ['Amazon S3', 'Amazon EBS', 'Amazon Route 53', 'AWS CloudTrail'] },
+  { id: 'q10', topic: 'Storage', question: 'Which AWS service provides a managed relational database?', options: ['Amazon DynamoDB', 'Amazon S3', 'Amazon RDS', 'Amazon CloudFront'] },
+  { id: 'q11', topic: 'Storage', question: 'Which service provides a shared file system that multiple Linux EC2 instances can access?', options: ['Amazon EFS', 'Amazon EBS', 'Amazon SQS', 'Amazon SNS'] },
+  { id: 'q12', topic: 'Security', question: 'What is the primary purpose of multi-factor authentication (MFA)?', options: ['Increase storage capacity', 'Add another layer of identity verification', 'Reduce network latency', 'Automatically create backups'] },
+  { id: 'q13', topic: 'Security', question: 'What does the principle of least privilege mean?', options: ['Give every user administrator access', 'Give users only the permissions they need', 'Disable all user accounts', 'Share one IAM user across an organization'] },
+  { id: 'q14', topic: 'Security', question: 'Which AWS service helps create and manage encryption keys?', options: ['AWS KMS', 'Amazon Route 53', 'Amazon EC2', 'AWS CloudFormation'] },
+  { id: 'q15', topic: 'Monitoring', question: 'Which AWS service collects metrics and can trigger alarms?', options: ['AWS CloudTrail', 'Amazon CloudWatch', 'Amazon EFS', 'AWS IAM'] },
+  { id: 'q16', topic: 'Monitoring', question: 'Which AWS service records account activity and API events for auditing?', options: ['AWS CloudTrail', 'Amazon RDS', 'Amazon EBS', 'Amazon S3 Glacier'] },
+  { id: 'q17', topic: 'Monitoring', question: 'Which AWS service helps manage operational tasks across AWS resources?', options: ['AWS Systems Manager', 'Amazon Route 53', 'Amazon CloudFront', 'Amazon EFS'] },
+  { id: 'q18', topic: 'Networking', question: 'What is an Amazon VPC?', options: ['A logically isolated virtual network in AWS', 'A relational database', 'An identity provider only', 'A file storage service'] },
+  { id: 'q19', topic: 'Networking', question: 'What do EC2 security groups primarily control?', options: ['Billing invoices', 'Inbound and outbound traffic for associated resources', 'Database backups', 'IAM password policies'] },
+  { id: 'q20', topic: 'Networking', question: 'Which AWS service provides DNS domain name resolution and domain registration?', options: ['Amazon CloudWatch', 'Amazon Route 53', 'Amazon EBS', 'AWS KMS'] }
 ]
 
 let selected = 0
@@ -196,18 +46,9 @@ document.querySelector('#app').innerHTML = `
     </section>
 
     <section class="stats">
-      <article class="stat-card">
-        <span>Questions</span>
-        <strong id="total">20</strong>
-      </article>
-      <article class="stat-card">
-        <span>Answered</span>
-        <strong id="answered">0</strong>
-      </article>
-      <article class="stat-card">
-        <span>Score</span>
-        <strong id="score">—</strong>
-      </article>
+      <article class="stat-card"><span>Questions</span><strong id="total">20</strong></article>
+      <article class="stat-card"><span>Answered</span><strong id="answered">0</strong></article>
+      <article class="stat-card"><span>Score</span><strong id="score">—</strong></article>
     </section>
 
     <section class="quiz-layout">
@@ -223,20 +64,14 @@ document.querySelector('#app').innerHTML = `
           <span id="question-topic" class="topic-pill"></span>
           <span id="progress" class="muted"></span>
         </div>
-
-        <div class="progress-track">
-          <div id="progress-fill"></div>
-        </div>
-
+        <div class="progress-track"><div id="progress-fill"></div></div>
         <h2 id="question"></h2>
         <div id="options" class="options"></div>
         <div id="feedback" aria-live="polite"></div>
-
         <div class="actions">
           <button id="previous" class="secondary">Previous</button>
           <button id="next" class="primary">Next question →</button>
         </div>
-
         <button id="submit" class="primary submit-button">Check my readiness</button>
         <button id="restart" class="secondary restart-button">Try again</button>
         <div id="results" aria-live="polite"></div>
@@ -256,12 +91,7 @@ function renderTopics() {
       q.topic === topic && answers[i] !== undefined
     ).length
 
-    return `
-      <div class="topic-row">
-        <span>${topic}</span>
-        <span class="muted">${done}/${total}</span>
-      </div>
-    `
+    return `<div class="topic-row"><span>${topic}</span><span class="muted">${done}/${total}</span></div>`
   }).join('')
 }
 
@@ -274,11 +104,8 @@ function renderQuestion() {
   $('#question').textContent = q.question
 
   $('#options').innerHTML = q.options.map((option, i) => `
-    <button
-      class="option ${answers[selected] === i ? 'selected' : ''}"
-      data-option="${i}"
-      ${submitted || submitting ? 'disabled' : ''}
-    >
+    <button class="option ${answers[selected] === i ? 'selected' : ''}"
+      data-option="${i}" ${submitted || submitting ? 'disabled' : ''}>
       <span class="option-letter">${String.fromCharCode(65 + i)}</span>
       <span>${option}</span>
     </button>
@@ -302,13 +129,7 @@ function renderQuestion() {
   $('#restart').disabled = submitting
 
   if (submitted && backendResult) {
-    const correct = answers[selected] === q.answer
-
-    $('#feedback').innerHTML = `
-      <p>${correct ? '✓ Correct answer' : 'Incorrect answer'}</p>
-      <p>Correct answer: ${q.options[q.answer]}</p>
-      <p class="muted">${q.explanation}</p>
-    `
+    $('#feedback').textContent = 'Your answers have been evaluated by the backend.'
     renderResults()
   } else if (!submitting) {
     $('#results').innerHTML = ''
@@ -318,27 +139,24 @@ function renderQuestion() {
 function renderResults() {
   if (!backendResult) return
 
-  const correct = backendResult.correctAnswers
-  const total = backendResult.totalQuestions
-  const score = backendResult.score
   const topics = [...new Set(questions.map(q => q.topic))]
 
   $('#results').innerHTML = `
-    <h3>${correct} / ${total} correct</h3>
-    <p>Accuracy: ${score}%</p>
+    <h3>${backendResult.correctAnswers} / ${backendResult.totalQuestions} correct</h3>
+    <p>Accuracy: ${backendResult.score}%</p>
     <p>Practice threshold: ${backendResult.passedPracticeThreshold ? 'Reached' : 'Not reached'}</p>
     <p class="muted">This practice quiz cannot predict your official exam result.</p>
     <h3>Topic breakdown</h3>
     ${topics.map(topic => {
       const topicQuestions = questions
-        .map((question, index) => ({ ...question, index }))
-        .filter(question => question.topic === topic)
+        .map((q, index) => ({ ...q, index }))
+        .filter(q => q.topic === topic)
 
-      const topicCorrect = topicQuestions.filter(
-        question => answers[question.index] === question.answer
+      const topicAnswered = topicQuestions.filter(
+        q => answers[q.index] !== undefined
       ).length
 
-      return `<p>${topic}: ${topicCorrect}/${topicQuestions.length} correct</p>`
+      return `<p>${topic}: ${topicAnswered} answered out of ${topicQuestions.length}</p>`
     }).join('')}
   `
 }
@@ -384,7 +202,7 @@ async function submitAnswers() {
     submitted = true
   } catch (error) {
     $('#feedback').textContent =
-      `Could not connect to the backend. Make sure the local server is running. Details: ${error.message}`
+      `Could not connect to the backend. Check that the local server is running. Details: ${error.message}`
   } finally {
     submitting = false
     render()

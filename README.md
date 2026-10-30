@@ -48,31 +48,7 @@ Correct answers and explanations are handled by the backend rather than exposed 
 
 ## Architecture
 
-```text
-             User
-               |
-               v
-       GitHub Pages
-       (Vite Frontend)
-               |
-               | HTTPS POST
-               v
-      Lambda Function URL
-               |
-               v
-         AWS Lambda
-        (Node.js Backend)
-               |
-               v
-       Answer Validation
-       Score Calculation
-               |
-               v
-        JSON Response
-               |
-               v
-       Frontend Results
-```
+![CloudReady AWS Architecture](docs/images/cloudready-architecture.png)
 
 ## Application Workflow
 
